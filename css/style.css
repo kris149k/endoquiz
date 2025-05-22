@@ -1,0 +1,811 @@
+@import url(https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+  box-sizing: border-box;
+
+}
+
+:root {
+    --font-family: 'Inter Tight', sans-serif;
+    --font-size-base: 16px;
+    --color-darkpurple: #5E0030;
+    --color-purple: #916681;
+    --color-grey: #d9d9d9;
+    --color-white: #ffffff;
+    --color-black: #1E1E1E;
+    --color-text: #575757;
+    --background: 
+    
+    linear-gradient(120deg, #e0e6ec, #d2d1cd);
+
+    --border-radius: 20px;
+}
+
+body {
+    background: var(--background);
+    font-family: var(--font-family);
+    position: relative;
+}
+
+
+/* #####################
+GLOBAL
+##################### */
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-black);
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 56px;
+    line-height: 64px;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 500;
+}
+
+p {
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+em {
+    font-style: italic;
+    color: var(--color-black);
+    text-decoration: underline 2px;
+}
+
+i {
+    font-style: italic;
+}
+
+/* Simple Quote Style */
+.quote {
+    margin: 20px 0;
+    padding: 16px 24px;
+    border-left: 5px solid var(--color-darkpurple);
+    font-style: italic;
+    color: #555; /* Slightly darker grey text color */
+    background-color: #f8f8f8;
+    line-height: 1.6;
+}
+
+strong {
+    color: #444444;
+    font-weight: 700;
+}
+
+/* ###############################################################
+STANDARD LAYOUT
+############################################################### */
+
+.progress + .question-container {
+    margin-top: 48px;
+}
+
+span + h1 {
+    margin-top: 48px;
+}
+
+h1 + p {
+    margin-top: 16px;
+}
+
+h1 + .img-container, p + .img-container, p + img {
+    margin-top: 32px;
+}
+
+h1 + #question-choices, p + #question-choices {
+    margin-top: 64px;
+}
+
+.img-container + #question-choices {
+    margin-top: 20px;
+}
+
+.choice-btn + .choice-btn {
+    margin-top: 20px;
+}
+
+* + button#check-answer-btn {
+    margin-top: 96px;
+}
+
+p + p {
+    margin-top: 16px;
+}
+
+/* #########################################################################################################
+Screen container
+######################################################################################################### */
+
+#screen-container {
+    width: 834px;
+    min-height: 1194px;
+    margin: auto;
+    padding: 110px 110px;
+    position: relative;
+    background-color: var(--color-white);
+    transition: all 0.2s ease-in-out;
+}
+
+span.subheading {
+    color: var(--color-black);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* #########################################################################################################
+Progress Bar
+######################################################################################################### */
+
+.progress {
+    width: 100%;
+    height: 6px;
+    background: #beb5bb;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.progress__fill{
+    width: 0%;
+    height: 100%;
+    background: var(--color-darkpurple);
+    transition: all 0.4s;
+}
+
+/* #########################################################################################################
+Button
+######################################################################################################### */
+
+button {
+    font-family: var(--font-family);
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button#check-answer-btn {
+    border-radius: 8px;
+    background: #1E1E1E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    border: none;
+    padding: 12px 14px;
+    gap: 10px;
+    color: white;
+    line-height: 24px;
+}
+
+button#check-answer-btn:hover {
+    transform: scale(1.01);
+    opacity: 0.8;
+}
+
+
+/*###################################
+svarmulighed button
+###################################*/
+
+/* forskellige layouts */
+#question-choices.row {
+    width: 100%;
+}
+
+#question-choices.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+#question-choices.true-false {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#question-choices.grid-img {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* choice button generel styling */
+.choice-btn {
+    width:100%;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    border-radius: 8px;
+    background: var(--color-grey);
+    line-height: 28px;
+    font-size: 18px;
+    color: var(--color-text);
+    transition: all 0.1s ease-in-out;
+}.choice-btn:hover {
+    background: var(--color-purple);
+    color: var(--color-white);
+    cursor: pointer;
+    transform: scale(1.01);
+    
+} .choice-btn.selected {
+    background: var(--color-darkpurple);
+    color: var(--color-white);
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+
+/* choice button styling baseret på layout */
+#question-choices.grid .choice-btn {
+    margin: 0;
+    padding-left: 24px;
+}
+
+#question-choices.true-false .choice-btn {
+    font-size: 40px;
+    margin-top: 0;
+    height: 225px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+}
+
+#question-choices.grid-img .choice-btn {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin: 0;
+    padding: 32px 40px;
+    border-radius: var(--border-radius);
+}
+
+#question-choices.grid-img .choice-btn img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.2s ease-in-out;
+}
+
+#question-choices.grid-img .choice-btn:hover img, #question-choices.grid-img .choice-btn.selected img {
+    filter: grayscale(0%);
+}
+
+
+/* #########################################################################################################
+overlay og popup
+######################################################################################################### */
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.20);
+    backdrop-filter: blur(15px);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-white);
+    padding: 70px 56px;
+    border-radius: var(--border-radius);
+    z-index: 100000;
+    width: 674px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.right-circle, .wrong-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 10000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-circle {
+    background-color: #e6eeeb;
+}
+.wrong-circle {
+    background-color: #DFCCD6;
+}
+
+.popup h2 {
+    margin-top: 36px;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.popup p {
+    margin: 16px auto auto auto;
+    max-width: 36ch;
+}
+
+.popup > img {
+    margin-top: 48px;
+}
+
+button#next-question-btn {
+    border-radius: 8px;
+    background: #1E1E1E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    border: none;
+    padding: 12px 14px;
+    gap: 10px;
+    color: white;
+    line-height: 24px;
+    margin-top: 48px;
+}
+
+
+/* #####################
+video player popup
+###################### */
+
+.video-popup-container {
+    position: relative;
+    overflow: hidden;
+
+    border-radius: var(--border-radius);
+    background-color: var(--color-black);
+}
+
+p + .video-popup-container {
+    margin-top: 36px;
+}
+
+.video-popup-container video {
+    width: 100%;
+    height: auto;   
+}
+
+.play-popup-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 100000000000;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.pause-popup-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 10;
+    user-select: none;
+}
+
+.play-popup-video img{
+    width: 84px;
+    height: 84px;
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-in-out;
+}
+
+.play-popup-video img:hover {
+    opacity: 0.8;   
+}
+
+/* ###################################################################################################################
+Gif video
+################################################################################################################### */
+
+/* gif video*/
+.gif-video-container {
+    width: 100%;
+    height: 350px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-top: 32px;
+    margin-bottom: 20px;
+}
+
+.gif-video-container video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* ######################################################################################################################
+Img container
+######################################################################################################################## */
+
+.img-container {
+    width: 100%;
+    overflow: hidden;
+    height: 325px;
+    border-radius: var(--border-radius);
+    border: 3px solid #00000026;
+    padding: 16px;
+}
+
+.img-container img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+/* ##############################################################################################################################
+end screen
+############################################################################################################################## */
+
+#screen-container.end-screen {
+    background-color: black;
+    display: flex;
+}
+
+.end-screen-backgroundimg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+.end-screen-innercontainer {
+    border-radius: 20px;
+    background: rgba(94, 0, 48, 0.50);
+    backdrop-filter: blur(10px);
+    display: flex;
+    min-width: 622px;
+    padding: 102px 56px;
+    flex-direction: column;
+    position: relative;
+    z-index: 1000;
+    margin: auto;
+    gap: 10px;
+}
+
+#screen-container.end-screen span {
+    color: var(--color-white);
+}
+#screen-container.end-screen h1 {
+    color: var(--color-white);
+    font-size: 64px;
+    line-height: 72px;
+    margin-top: 36px;
+}
+
+#screen-container.end-screen p {
+    color: var(--color-white);
+    opacity: 0.7;
+    margin-top: 36px;
+}
+
+/*end screen button */
+.end-screen-button {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px;
+    background: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 56px;
+    border: none;
+    padding: 12px 14px;
+    gap: 10px;
+    color: var(--color-black);
+    line-height: 24px;
+    text-decoration: none;
+    width: 100%;
+}
+.end-screen-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+
+  /* ##############################################################################################################################
+Startside
+################################################################################################################################### */
+
+#screen-container.startside {
+    background-color: black;
+    display: flex;
+}
+
+.startside-backgroundvideo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+.startside-innercontainer {
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(15px);
+    display: flex;
+    min-width: 622px;
+    padding: 102px 56px;
+    flex-direction: column;
+    position: relative;
+    z-index: 1000;
+    margin: auto;
+    gap: 10px;
+}
+
+#screen-container.startside .quiz-header {
+    color: var(--color-white);
+}
+#screen-container.startside h1 {
+    color: var(--color-white);
+    font-size: 64px;
+    line-height: 72px;
+    margin-top: 36px;
+}
+
+#screen-container.startside p {
+    color: var(--color-white);
+    opacity: 0.7;
+    margin-top: 36px;
+}
+
+/* startside button */
+.startside-button {
+ font-family: var(--font-family);
+font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+color: var(--color-white);
+background: var(--color-darkpurple);
+border: none;
+border-radius: 8px;
+padding: 12px 14px;
+width: 100%;
+margin-top: 40px;
+text-decoration: none;
+transition: all 0.2s ease-in-out;
+
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+
+.startside-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+/* ##############################################################################################################################
+Intro video side
+############################################################################################################################## */
+#screen-container.introvideoside {
+    display: flex;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+#screen-container.introvideoside div h1 {
+    line-height: 0.8;
+}
+
+#screen-container.introvideoside div p {
+    margin-top: 48px;
+}
+
+/*introvideo container*/
+.introvideoside-videocontainer {
+    height: 370px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-top: 48px;;
+}
+
+.introvideoside-video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/*introvideo button*/
+.introvideoside-button {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px;
+    background: var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 48px auto auto auto;
+    border: none;
+    padding: 12px 14px;
+    gap: 10px;
+    color: var(--color-white);
+    line-height: 24px;
+    text-decoration: none;
+    width: fit-content;
+}
+.introvideoside-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+/* ##############################################################################################################################
+Animation
+############################################################################################################################## */
+@keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-up {
+    animation: fadeUp 0.3s ease-out forwards;
+  }
+
+/* ##############################################################################################################################
+Zoom funktionalitet
+############################################################################################################################## */
+
+/* Clean, minimal styling for zoom controls */
+.zoom-controls {
+    position: fixed;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 12px 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+}
+
+/* Style for the drag handle */
+.drag-handle {
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    cursor: grab;
+    color: #555;
+    font-size: 22px;
+    line-height: 20px;
+    margin: 12px auto 16px auto;
+    user-select: none;
+}
+
+/* Outline buttons with no fill */
+.zoom-btn {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid #333;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 4px 0; /* Vertical margin */
+    color: #333;
+    outline: none;
+    user-select: none; /* Prevent text selection during drag */
+}
+
+.zoom-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+/* Slider styling */
+.zoom-slider {
+    width: 4px;
+    height: 120px;
+    margin: 10px 0;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    border-radius: 2px;
+    outline: none;
+    /* Styling for vertical orientation */
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+}
+
+.zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #333;
+    background: white;
+    cursor: pointer;
+}
+
+.zoom-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #333;
+    background: white;
+    cursor: pointer;
+}
+
+/* Percentage display */
+.zoom-percentage {
+    min-width: 45px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin-top: 4px; /* Space above percentage */
+    user-select: none; /* Prevent text selection during drag */
+}
